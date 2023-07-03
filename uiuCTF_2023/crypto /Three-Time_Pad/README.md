@@ -5,10 +5,10 @@
 Enclosed are three encrypted messages. Our mole overheard the plaintext of message 2. Given this information, can you break the enemy's encryption and get the plaintext of the other messages?"
 
 ### Attachments
-- [c1](./c1)
-- [c2](./c2)
-- [c3](./c3)
-- [p2](./p2)
+- [c1](./handouts/c1)
+- [c2](./handouts/c2)
+- [c3](./handouts/c3)
+- [p2](./handouts/p2)
 
 ## Solution
 A common issue with the encryption algorithm "One-Time Pad" is the reuse of the secret key. "One-Time Pad" uses a bitwise XOR between the message and the key to compute the ciphertext as well as XOR between the ciphertext and the key to restore the message. Thus computing message XOR ciphertext reveals the key.
