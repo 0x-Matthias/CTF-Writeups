@@ -45,8 +45,7 @@ maxFlag = int.from_bytes(b"uiuctf{\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x
 print((maxFlag * e).bit_length()) # 973
 print(n.bit_length()) # 1022
 ```
-Because the bit-length of an integer directly correlates to their maximum value, `(maxFlag * e) < n` holds.
-<p style="text-align:right;margin-top:-30px;">∎</p>
+Because the bit-length of an integer directly correlates to their maximum value, `(maxFlag * e) < n` holds. ∎
 
 ### Computing the flag
 ```python
