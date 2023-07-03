@@ -38,7 +38,7 @@ c = 6774337446244858210744016851368752043459452933182174073739611640792811104381
 ## Solution
 In this challenge we are offered an encrypted flag `c = (flag * e) % n` and given the values for `c`, `e` and `n`. Solving these kinds of equations may be computationally expensive if not for the fact, that in this case `flag * e < n` holds and thus the flag can be easily computed by rearranging the aforementioned equation: `flag = c / e`.
 
-### Let's proof `flag * e < n`
+### Proof of `flag * e < n`
 Assuming each asterisks in the fake flag `flag = int.from_bytes(b"uiuctf{******************}", "big")` corresponds to exactly one ascii character in the flag, the biggest interger we could possibly achieve for `flag` is replacing all the asterisks with the byte 0x7f, thus:
 ```python
 maxFlag = int.from_bytes(b"uiuctf{\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f}", "big")
