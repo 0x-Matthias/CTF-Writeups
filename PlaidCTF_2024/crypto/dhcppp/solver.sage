@@ -30,8 +30,8 @@ def byte_xor(d1, d2):
 	return bytes([(a^^b) for a,b in zip(d1, d2)])
 
 dhcp_req_pkt = bytearray(
-	flag_server_mac + # src mac = <YOUR_MAC>
-	dhcp_server_mac + # dst mac = "1b 7d 6f 49 37 c9"
+	flag_server_mac +
+	dhcp_server_mac +
 	# msg:
 	b'\x01' + # DHCP request
 	b''     + # rest of msg
@@ -248,7 +248,7 @@ key = key1
 
 # Encrypt a 3rd adversarial message packet
 pkt3 = bytearray(
-	bytes([int(x) for x in ip.split(".")]) +
+	bytes([int(x) for x in ip_dot_3.split(".")]) +
 	bytes([int(x) for x in gateway_ip.split(".")]) +
 	bytes([255, 255, 255, 0]) +
 	bytes([int(x) for x in own_ip_address.split(".")]) +
